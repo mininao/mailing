@@ -4,20 +4,11 @@ var fs = require('fs');
 var util = require('util');
 
 var _ = require('lodash');
-var csv = require('csv');
+
 var mailgun = require('mailgun-js')({apiKey: config.mailgun_api_key, domain: config.mailgun_domain});
 var Handlebars = require('handlebars');
-var rawList = fs.readFileSync(config.list);
-var csvConf = {columns:['cardId','firstName','lastName','contributor','email','pseudo','null','year']};
 
-
-csv.parse(rawList, csvConf,function(err, list){
-	list = _.map(list,function(user){
-		return _.omit(user,"null");
-	});
-	console.log(list);
-});
-
+var list = require(config.sendInput)
 
 var data = {
   from: 'Zéphyr <zephyr@mail.baslesmasqu.es>',

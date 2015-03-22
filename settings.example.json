@@ -1,4 +1,7 @@
 {
-	mailgun_api_key:"key-xxxxx",
-	mailgun_domain:"mail.example.com"
+	"mailgun_api_key":"key-xxxxx",
+	"mailgun_domain":"mail.example.com",
+	"user_input":"lists/example.csv",
+	"user_output":"lists/example.json",
+	"senderInput":"lists/example.json"
 }

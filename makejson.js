@@ -15,5 +15,5 @@ csv.parse(rawList, csvConf,function(err, list){
 		return _.omit(user,"null");
 	});
 	console.log(list);
-	fs.writeFile(config.user_output, JSON.stringify(list));
+	fs.writeFile(config.user_output, JSON.stringify(list, null, '\t'));
 });

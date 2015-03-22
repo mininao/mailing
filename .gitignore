@@ -30,5 +30,6 @@ node_modules
 # Secreeet
 settings.json
 lists
-!lists/example.csv
 
+# useless
+clipboard
