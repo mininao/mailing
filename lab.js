@@ -8,8 +8,21 @@ var _ = require('lodash');
 var mailgun = require('mailgun-js')({apiKey: config.mailgun_api_key, domain: config.mailgun_domain});
 var Handlebars = require('handlebars');
 
+// Fetch userlist
 var list = require(config.sendInput)
 
+//Define handlebars helpers for easier tempalting
+
+Handlebars.registerHelper('isE1', function() {
+  return new Handlebars.SafeString("<a href='" + Handlebars.Utils.escapeExpression(this.url) + "'>" + Handlebars.Utils.escapeExpression(this.body) + "</a>");
+});
+
+
+_.each(list,function(user){
+	
+	var 
+	
+});
 var data = {
   from: 'Zéphyr <zephyr@mail.baslesmasqu.es>',
   to: 'maxence.aici@edu.esiee.fr',
