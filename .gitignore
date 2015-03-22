@@ -29,3 +29,6 @@ node_modules
 
 # Secreeet
 settings.json
+lists
+!lists/example.csv
+

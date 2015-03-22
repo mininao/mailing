@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/mininao/mailing/issues"
   },
-  "homepage": "https://github.com/mininao/mailing"
+  "homepage": "https://github.com/mininao/mailing",
+  "dependencies": {
+    "npm": "^2.7.1"
+  }
 }
