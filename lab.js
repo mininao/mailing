@@ -8,31 +8,44 @@ var _ = require('lodash');
 var mailgun = require('mailgun-js')({apiKey: config.mailgun_api_key, domain: config.mailgun_domain});
 var Handlebars = require('handlebars');
 
-// Fetch userlist
-var list = require(config.sendInput)
+// Load template
+var rawTemplate = fs.readFileSync('templates/lab.hbs',{encoding:"utf-8"});
+console.log(rawTemplate)
+// Load userlist
+var list = require(config.sender_input)
 
-//Define handlebars helpers for easier tempalting
-
-Handlebars.registerHelper('isE1', function() {
-  return new Handlebars.SafeString("<a href='" + Handlebars.Utils.escapeExpression(this.url) + "'>" + Handlebars.Utils.escapeExpression(this.body) + "</a>");
-});
-
+//Compile Template
+var template = Handlebars.compile(rawTemplate);
 
 _.each(list,function(user){
+	user.isE1 = user.year == 'E1';
+	user.isE2 = user.year == 'E2';
+	user.isE3 = user.year == 'E3';
+	user.isE4 = user.year == 'E4';
+	user.isE5 = user.year == 'E5';
+	var text = template(user);
 	
-	var 
+	var data = {
+	  from: 'Zéphyr <zephyr@mail.baslesmasqu.es>',
+	  to: user.email,
+	  subject: 'Merci ' + user.firstName + ' !',
+	  text: text
+	};
+	mailgun.messages().send(data, function (error, body) {
+		console.log(user.email);
+		console.log(body);
+		
+	});
 	
 });
-var data = {
-  from: 'Zéphyr <zephyr@mail.baslesmasqu.es>',
-  to: 'maxence.aici@edu.esiee.fr',
-  subject: 'Hello',
-  text: 'Testing some Mailgun awesomness!'
-};
 
+
+
+/*
 mailgun.messages().send(data, function (error, body) {
   console.log(body);
 });
+*/
 
 /*var list = mailgun.lists('eleves@mail.baslesmasqu.es ');
 

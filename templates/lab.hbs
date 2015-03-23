@@ -11,13 +11,14 @@
 		<li>Promo : {{year}}</li>
 		<li>Pseudo : {{pseudo}}</li>
 	</ul>
-	{{if isE2}}
+	{{#if isE2}}
 	<h2>Je m'affiche pour les E2</h2>
-	{{/if}}	
-	{{if isE1}}
+	{{/if}}
+	{{isE2}}
+	{{#if isE1}}
 	<h2>Je m'affiche pour les E1</h2>
 	{{/if}}	
-	{{if isE3}}
+	{{#if isE3}}
 	<h2>Je m'affiche pour les E3</h2>
 	{{/if}}			
 </body>
